@@ -1,0 +1,66 @@
+﻿@{
+    Layout = "~/Views/Admin/_LayoutPageAdmin.cshtml";
+}
+@model IEnumerable<test.ЗаказДеталей>
+
+<h2>НЕОБХОДИМЫЕ ДЛЯ ЗАКАЗА ДЕТАЛИ</h2>
+<br />
+<br />
+<table class="table">
+    <tr>
+        <th>
+            Номер детали
+        </th>
+        <th>
+            Название детали
+
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Количество)
+        </th>
+        <th>
+            Завод-изготовитель
+        </th>
+        <th>
+            &nbsp;&nbsp;&nbsp;@Html.DisplayNameFor(model => model.Дата)
+        </th>
+        
+       
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Html.DisplayFor(modelItem => item.НоваяДетальID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.НазваниеДетали)
+            </td>
+            <td>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Html.DisplayFor(modelItem => item.Количество)
+            </td>
+            <td>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @Html.DisplayFor(modelItem => item.ЗаводИзготовитель.НазваниеЗавода)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Дата.ToShortDateString)
+            </td>*@
+           <td>
+               @Html.ValueFor(modelItem => item.Дата, "{0:yyyy-MM-dd}")
+           </td>
+            @*<td>
+                @Html.DisplayTextFor(modelItem=>item.Дата.Day).@Html.DisplayTextFor(modelItem => item.Дата.Month).@Html.DisplayTextFor(modelItem => item.Дата.Year)
+            </td>*@
+            <td>
+
+
+                @Html.ActionLink("Удалить", "Delete", new {  id = item.НоваяДетальID })
+            </td>
+        </tr>
+    }
+
+</table>
+

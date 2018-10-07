@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "GetDetail";
+    Layout = "~/Views/Order/_LayoutPageOrder.cshtml";
+}
+
+<h2>ОФОРМЛЕНИЕ ЗАКАЗА ДЕТАЛИ</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+           @Html.Label("НазваниеДетали", "Название детали",htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBox("НазваниеДетали", null, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessage("", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Количество", "Количество", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBox("Количество", null, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessage("", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Дата", "Дата", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBox("Дата", null, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessage("", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("FactoryName","Завод-изготовитель" ,htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("FactoryName", ViewBag.НазваниеЗавода as SelectList, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessage("", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Добавить" class="btn btn-default" />
+            </div>
+        </div>
+
+
+     </div>
+        }
+
+<div>
+    <input type="button" class="btn-danger" value="Назад к списку" onclick="location.href='@Url.Action("Index","Order")'" />
+</div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

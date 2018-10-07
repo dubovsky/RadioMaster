@@ -1,0 +1,73 @@
+﻿@model test.Заказы
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Order/_LayoutPageOrder.cshtml";
+}
+
+<h2>УДАЛЕНИЕ ЗАЯВКИ ИЗ СПИСКА</h2>
+
+<h3>Вы действительно желаете удалить заявку?</h3>
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Тип Ремонта
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ВидРемонта.ТипРемонта)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Гарантии.Гарантия)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Гарантии.Гарантия)
+        </dd>
+
+        <dt>
+           Название Запчасти
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Запчасти.НазваниеЗапчасти)
+        </dd>
+
+       
+
+        <dt>
+            Клиент
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Клиенты.ФИО)
+        </dd>
+
+        <dt>
+           Состояние Ремонта
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.СостояниеРемонта.Состояние)
+        </dd>
+
+        
+
+        
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" class="btn btn-default" />
+                    
+        </div>
+    }
+    <br />
+    <input type="button" class="btn-danger" value="Назад к списку" onclick="location.href='@Url.Action("Index","Order")'" />
+</div>

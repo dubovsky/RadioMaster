@@ -1,0 +1,117 @@
+﻿@model IEnumerable<test.Заказы>
+@using System.Text
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Order/_LayoutPageOrder.cshtml";
+}
+
+<h2>Список всех заявок на ремонт</h2>
+<br />
+<br />
+@*Модильное окно*@
+<div class="container">
+    
+    <!-- Trigger the modal with a button -->
+    <button type="button" class="btn btn-danger btn-lg" data-backdrop="static" data-toggle="modal" data-target="#myModal">Добавить заявку</button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    @*<button type="button" class="close" data-dismiss="modal">Отмена</button>*@
+                    <h4 class="modal-title text-primary">Добавить клиента или сразу приступить к оформлению заявки?</h4>
+                </div>
+                <div class="modal-body">
+                    
+                        <input type="button" class="btn btn-success pull-left" value="ДА" onclick="location.href='@Url.Action("AddClient","Order")'" />
+                    <input type="button" class="btn btn-danger pull-right" value="Нет" onclick="location.href='@Url.Action("Create","Order")'" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*Конец модального окна*@
+<br />
+
+<table class="table">
+    <tr>
+        <th>
+            <p>№ Заявки</p>
+        </th>
+        <th>
+            <p>Вид Ремонта</p>
+        </th>
+        <th>
+           <p>Состояние ремонта</p>
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Гарантии.Гарантия)
+        </th>
+        <th>
+           <p>Название запчасти</p>
+        </th>
+        <th>
+            <p>Телефон клиента</p>
+        </th>
+        
+        <th>
+            <p>Дата оформления</p>
+        </th>
+        <th>
+            Вид Неисправности
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ЗаказID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ВидРемонта.ТипРемонта)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.СостояниеРемонта.Состояние)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Гарантии.Гарантия)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Запчасти.НазваниеЗапчасти)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Клиенты.Телефон)
+        </td>
+        <td>
+            @Html.ValueFor(model => item.ДатаЗаказа, "{0:yyyy-MM-dd}")
+            @*@Html.DisplayFor(modelItem => item.ДатаЗаказа.Year)-@Html.DisplayFor(modelItem => item.ДатаЗаказа.Month)-@Html.DisplayFor(modelItem => item.ДатаЗаказа.Day)*@
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Поломка)
+        </td>
+        <td>
+            /@Html.ActionLink("Изменить", "Edit", new { id=item.ЗаказID })/ 
+            /@Html.ActionLink("Подробнее", "Details", new { id=item.ЗаказID })/ 
+            /@Html.ActionLink("Удалить", "Delete", new { id=item.ЗаказID })/ 
+        </td>
+    </tr>
+}
+
+</table>
+@*@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+    </script>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}*@

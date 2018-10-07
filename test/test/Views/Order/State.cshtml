@@ -1,0 +1,17 @@
+﻿@model test.Заказы
+@{ 
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h3>ПРОВЕРКА СОСТОЯНИЯ ВЫПОЛНЕНИЯ ЗАЯВКИ</h3>
+<br />
+@using (Html.BeginForm())
+{
+    
+        <b><span class="text-white">Введите Id заявки:</span></b> @Html.TextBox("id")
+        <input type="submit" value="Проверить" />
+    
+}
+<br />
+<div class="text-white">
+    @Html.DisplayFor(model => model.СостояниеРемонта.Состояние)
+</div>

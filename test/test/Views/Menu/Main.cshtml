@@ -1,0 +1,13 @@
+﻿@model IEnumerable<test.Models.MenuItem>
+
+<ul class="nav navbar-nav"> 
+    @foreach (var item in Model)
+    {
+       
+        
+            <li class="@item.Active">@Html.ActionLink(item.Name, item.Action, item.Controller)</li>
+        
+
+    } 
+</ul>
+ 

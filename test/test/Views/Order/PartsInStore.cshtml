@@ -1,0 +1,60 @@
+﻿@model PagedList.IPagedList<test.Запчасти>
+    @using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+
+@{
+    ViewBag.Title = "PartsInStore";
+    Layout = "~/Views/Order/_LayoutPageOrder.cshtml";
+}
+
+<h2>НАЛИЧИЕ ЗАПЧАСТЕЙ НА СКЛАДЕ</h2>
+
+@using (Html.BeginForm("PartsInStore", "Order", FormMethod.Get))
+{
+    <p>
+        <b><span class="text-white">Поиск по названию запчасти:</span></b> @Html.TextBox("searchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Найти" />
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+           @Html.ActionLink("Название запчасти", "PartsInStore", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            Наличие на складе
+        </th>
+        <th>
+            Цена запчасти
+        </th>
+        <th>
+            Наименование завода-изготовителя
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.НазваниеЗапчасти)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.НаличиеЗапчастей.НаличиеЗапчасти)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ЦенаЗапчасти)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ЗаводИзготовитель.НазваниеЗавода)
+        </td>  
+    </tr>
+}
+
+</table>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("PartsInStore",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

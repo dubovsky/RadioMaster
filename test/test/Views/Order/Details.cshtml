@@ -1,0 +1,98 @@
+﻿@model test.Заказы
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Order/_LayoutPageOrder.cshtml";
+}
+
+<h2>ПОДРОБНАЯ ИНФОРМАЦИЯ О ЗАЯВКЕ</h2>
+
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Тип ремонта
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ВидРемонта.ТипРемонта)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Гарантии.Гарантия)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Гарантии.Гарантия)
+        </dd>
+
+        <dt>
+            Название Запчасти
+        </dt>
+
+        <dd>
+            @{ 
+
+            
+            if (Model.ЗапчастьID != null)
+            {
+                @Html.DisplayFor(model => model.Запчасти.НазваниеЗапчасти)
+            }
+            else 
+            {
+            <div>------------------</div>
+                }
+            }
+        </dd>
+
+        <dt>
+           Испонитель
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Исполнители.ФИО)
+        </dd>
+
+        <dt>
+            ФИО Клиента
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Клиенты.ФИО)
+        </dd>
+
+        <dt>
+            Состояние ремонта
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.СостояниеРемонта.Состояние)
+        </dd>
+
+        <dt>
+            Дата заказа
+        </dt>
+
+        <dd>
+            
+            @Html.ValueFor(model => model.ДатаЗаказа,"{0:yyyy-MM-dd}")
+            @*@Html.DisplayFor(model => model.ДатаЗаказа.Day).@Html.DisplayFor(model => model.ДатаЗаказа.Month).@Html.DisplayFor(model => model.ДатаЗаказа.Year)*@
+        </dd>
+
+        <dt>
+           О поломке
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Поломка)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    
+        <input type="button" class="btn-danger" value="Редактировать" onclick="location.href='@Url.Action("Edit","Order", new { id = Model.ЗаказID })'" />  |
+        <input type="button" class="btn-danger" value="Назад к списку" onclick="location.href='@Url.Action("Index","Order")'" />
+    
+</p>

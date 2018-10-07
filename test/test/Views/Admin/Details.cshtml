@@ -1,0 +1,57 @@
+﻿@model test.Исполнители
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Admin/_LayoutPageAdmin.cshtml";
+}
+
+<h2>Подробная информация о мастере</h2>
+<br />
+<br />
+<div>
+    <h4>Радиомастер Сервис Центра</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.ФИО)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ФИО)
+        </dd>
+        <dt>
+            Квалификация
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.КвалификацияМастера.Квалификация)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Стаж)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Стаж)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Телефон)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Телефон)
+        </dd>
+
+        
+       
+    </dl>
+</div>
+
+<div>
+    <input type="button" class="btn-danger" value="Редактировать" onclick="location.href='@Url.Action("Edit","Admin",new { id = Model.ИсполнительID })'" />
+</div>
+<br />
+<div>
+    <input type="button" class="btn-danger" value="Назад к списку" onclick="location.href='@Url.Action("Index","Admin")'" />
+</div>

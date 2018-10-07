@@ -1,0 +1,69 @@
+﻿@model IEnumerable<test.Заказы>
+@using System.Xml.Linq;
+
+@{
+    ViewBag.Title = "Stimulation";
+    Layout = "~/Views/Admin/_LayoutPageAdmin.cshtml";
+}
+
+<h2>ПОКАЗАТЕЛИ МАСТЕРОВ</h2>
+
+<br />
+<br />
+
+
+<h4>Количество заказов выполненных сотрудниками</h4>
+<table class="table">
+    <tr>
+        <th>
+            ФИО мастера
+        </th>
+        <th>
+            Количество
+        </th>
+        <th></th>
+    </tr>
+@{ 
+    int count = 0;
+}
+
+@foreach (Исполнители item in ViewBag.Master)
+{
+count = 0;
+foreach (var item2 in Model)
+{
+    if (item2.СостояниеID == 2 && item.ФИО == item2.Исполнители.ФИО)
+    {
+        count++;
+    }
+}
+if (count > 0)
+{
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ФИО)
+            </td>
+            <td>@count</td>
+        </tr>
+}
+}
+</table>
+<hr />
+<br />
+
+
+
+@*<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-sm-4 col-md-offset-0 col-sm-offset-0">
+            
+            <div class="btn btn-success">@Html.ActionLink("ВЫГРУЗИТЬ СТАТИСТИКУ В ФАЙЛ", "SaveToFile")</div>
+           
+        </div>
+    </div>
+</div>*@
+@using (Html.BeginForm("SaveToFile", "Admin", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <input type="submit" value="ВЫГРУЗИТЬ СТАТИСТИКУ В ФАЙЛ" />
+}

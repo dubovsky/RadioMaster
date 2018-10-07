@@ -1,0 +1,28 @@
+﻿@model IEnumerable<test.Запчасти>
+
+@{
+    ViewBag.Title = "Investments";
+    Layout = "~/Views/Admin/_LayoutPageAdmin.cshtml";
+}
+
+<h2>ЗАТРАТЫ НА ЗАПЧАСТИ</h2>
+
+<br />
+<table class="table">
+    <tr>
+        <th>
+            Общая сумма затрат
+        </th>
+        <th>
+            @{ 
+                double n = 0;
+                foreach (var item in Model)
+                {
+                    n+= item.ЦенаЗапчасти;
+                }
+            }
+            @n  &nbsp;BYN
+        </th>
+        
+    </tr>
+</table>

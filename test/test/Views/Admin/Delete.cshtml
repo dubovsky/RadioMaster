@@ -1,0 +1,27 @@
+﻿@model test.ЗаказДеталей
+
+<h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Введите цену на запчасть</h3>
+<br />
+@using (Html.BeginForm("Delete", "Admin", FormMethod.Post))
+{
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                @Html.HiddenFor(m=>m.НоваяДетальID)
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="text" name="price" id="price" value="" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="ОК" class="btn btn-default" />
+            </div>
+        </div>
+}
+<br />
+<br />
+<div class="col-md-2 col-md-offset-2">
+    <input type="button" class="btn-danger" value="Отмена" onclick="location.href='@Url.Action("PartsToOrder","Admin")'" />
+</div>

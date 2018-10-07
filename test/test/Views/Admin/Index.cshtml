@@ -1,0 +1,61 @@
+﻿@model IEnumerable<test.Исполнители>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Admin/_LayoutPageAdmin.cshtml";
+}
+
+
+<h2>РАБОТА С МАСТЕРАМИ</h2>
+<br />
+<br />
+<h4>ИНФОРМАЦИЯ О МАСТЕРАХ</h4>
+<br />
+<p>
+    <input type="button" class="btn btn-success btn-lg" value="Нанять мастера" onclick="location.href='@Url.Action("Create","Admin")'" />
+</p>
+<table class="table">
+    <tr>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.ФИО)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Телефон)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Стаж)
+        </th>
+        <th>
+            Квалификация
+        </th> 
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.ФИО)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Телефон)
+        </td>
+        <td>
+            &nbsp;&nbsp;&nbsp;&nbsp;@Html.DisplayFor(modelItem => item.Стаж)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.КвалификацияМастера.Квалификация)
+        </td>
+        
+        
+       
+        <td>
+            @Html.ActionLink("Изменить", "Edit", new { id=item.ИсполнительID }) |
+            @Html.ActionLink("Подробнее", "Details", new { id=item.ИсполнительID }) |
+        </td>
+    </tr>
+}
+
+</table>

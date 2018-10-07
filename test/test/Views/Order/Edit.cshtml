@@ -1,0 +1,114 @@
+﻿@model test.Заказы
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Order/_LayoutPageOrder.cshtml";
+}
+
+<h2>РЕДАКТИРОВАНИЕ ЗАЯВКИ</h2>
+
+@*@{ 
+    List<Клиенты> lst = null;
+    foreach (Клиенты item in ViewBag.КлиентID)
+    {
+        foreach (Заказы item2 in ViewBag.Заказы)
+        {
+            if(item.КлиентID==item2.КлиентID)
+            {
+                lst.Add(item);
+            }
+        }
+    }
+}*@
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ЗаказID)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ДатаЗаказа,"Дата Заявки", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                
+                @Html.TextBoxFor(model => model.ДатаЗаказа,"{0:yyyy-MM-dd}", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ДатаЗаказа, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Поломка, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Поломка, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Поломка, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Исполнители.ФИО, "Исполнитель", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("ИсполнительID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Исполнители.ФИО, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.СостояниеID, "Состояние", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("СостояниеID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.СостояниеID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ГарантияID, "Гарантия", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("ГарантияID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ГарантияID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Клиенты.ФИО, "ФИО Клиента", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("КлиентID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Клиенты.ФИО, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ВидРемонтаID, "Вид Ремонта", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("ВидРемонтаID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ВидРемонтаID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ЗапчастьID, "Запчасть", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("ЗапчастьID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ЗапчастьID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Сохранить" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    <input type="button" class="btn-danger" value="Назад к списку" onclick="location.href='@Url.Action("Index","Order")'" />
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
