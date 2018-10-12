@@ -15,6 +15,8 @@ OS Windows
 ### Usage
 - Run test.sln
 - Press ctrl+F5
+- To login as a radiomaster type - login: radioMaster1@mail.ru, password: master1
+- To login as an administrator type - login: bondagefist@mail.ru, password: 123456
 - Enjoy the application =))
 
 
