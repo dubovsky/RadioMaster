@@ -9,7 +9,7 @@ This web application is needed for inner usage of a company. It allows to make o
 OS Windows
 
 ### Installation
-- Use database files .sql from "database files" folder to create database for <MS Sql server>
+- Use database files .sql from "database files" folder to create database for <MS Sql server Express>
 - Install Visual studio 2017
 
 ### Usage
